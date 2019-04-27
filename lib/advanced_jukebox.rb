@@ -2,15 +2,15 @@
 #make sure to edit the value of each key to replace < path to this directory >
 #with the correct path to this directory on your computer
 
-# my_songs = {
-# "Go Go GO" => '< path to this directory >/jukebox-cli/audio/Emerald-Park/01.mp3',
-# "LiberTeens" => '< path to this directory >/jukebox-cli/audio/Emerald-Park/02.mp3',
-# "Hamburg" =>  '< path to this directory >/jukebox-cli/audio/Emerald-Park/03.mp3',
-# "Guiding Light" => '< path to this directory >/jukebox-cli/audio/Emerald-Park/04.mp3',
-# "Wolf" => '< path to this directory >/jukebox-cli/audio/Emerald-Park/05.mp3',
-# "Blue" => '< path to this directory >/jukebox-cli/audio/Emerald-Park/06.mp3',
-# "Graduation Failed" => '< path to this directory >/jukebox-cli/audio/Emerald-Park/07.mp3'
-# }
+my_songs = {
+  "Go Go GO" => 'Desktop/Flatiron Code/Fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/01.mp3',
+  "LiberTeens" => 'Desktop/Flatiron Code/Fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/02.mp3',
+  "Hamburg" =>  'Desktop/Flatiron Code/Fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/03.mp3',
+  "Guiding Light" => 'Desktop/Flatiron Code/Fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/04.mp3',
+  "Wolf" => 'Desktop/Flatiron Code/Fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/05.mp3',
+  "Blue" => 'Desktop/Flatiron Code/Fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/06.mp3',
+  "Graduation Failed" => 'Desktop/Flatiron Code/Fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/07.mp3'
+}
 
 def help
   help = <<-HELP 
@@ -23,24 +23,22 @@ def help
   puts help
 end
 
-
-
 def list(my_songs)
   my_songs.keys.each_with_index do |song, index|
     puts "#{index+1}. #{song}"
   end
 end
 
-
 def play(my_songs)
-  #this method is slightly different!
-  #you should still ask the user for input and collect their song choice
-  #this time, only allow user's to input a song name
-  #check to see if the name they give is in fact a key of the my_songs hash
-  #if it isn't, tell them their choice is invalid
-  #if it is, play the song using the system 'open <file path>' syntax
-  #get the file path of the song by looking it up in the my_songs hash
-  
+  puts "Please enter a song name or number:"
+  song_to_play = gets.chomp
+  if !my_songs.keys.include?(song_to_play)
+    puts "Invalid input, please try again" 
+  else
+    puts "Now playing => #{song_to_play}"
+    puts my_songs[song_to_play]
+    system "open" + my_songs[song_to_play]
+  end
 end
 
 def exit_jukebox
@@ -48,6 +46,7 @@ def exit_jukebox
 end
 
 def run(my_songs)
+  help
   user_input = ""
   while user_input
     puts "Please enter a command:"
@@ -56,14 +55,15 @@ def run(my_songs)
     when "help"
       help
     when "list"
-      list
+      list(my_songs)
     when "play"
-      play
+      list(my_songs)
+      play(my_songs)
     when "exit"
       exit_jukebox
       break
     else
       help
-      end
     end
+  end
 end
