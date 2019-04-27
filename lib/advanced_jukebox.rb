@@ -26,8 +26,9 @@ end
 
 
 def list(my_songs)
-  #this method is different! Collect the keys of the my_songs hash and 
-  #list the songs by name
+  my_songs.keys.each_with_index do |song, index|
+    puts "#{index+1}. #{song}"
+  end
 end
 
 
@@ -43,9 +44,26 @@ def play(my_songs)
 end
 
 def exit_jukebox
-  #this method is the same as in jukebox.rb
+  puts "Goodbye"
 end
 
 def run(my_songs)
-  #this method is the same as in jukebox.rb
+  user_input = ""
+  while user_input
+    puts "Please enter a command:"
+    user_input = gets.strip.downcase 
+    case user_input
+    when "help"
+      help
+    when "list"
+      list
+    when "play"
+      play
+    when "exit"
+      exit_jukebox
+      break
+    else
+      help
+      end
+    end
 end
