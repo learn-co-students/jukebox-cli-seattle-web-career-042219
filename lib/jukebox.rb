@@ -23,14 +23,12 @@ def help
 end
 
 def list(songs)
-  binding.pry
   songs.each_with_index do |song, index|
     puts "#{index+1}. #{song}"
   end
 end
 
 def play(songs)
-  binding.pry
   puts "Please enter a song name or number:"
   song_to_play = gets.chomp
   if (1..9).to_a.include?(song_to_play.to_i)
