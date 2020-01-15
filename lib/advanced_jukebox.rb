@@ -3,13 +3,13 @@
 #with the correct path to this directory on your computer
 require "pry"
 my_songs = {
-  "Go Go GO" => 'Desktop/Flatiron Code/Fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/01.mp3',
-  "LiberTeens" => 'Desktop/Flatiron Code/Fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/02.mp3',
-  "Hamburg" =>  'Desktop/Flatiron Code/Fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/03.mp3',
-  "Guiding Light" => 'Desktop/Flatiron Code/Fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/04.mp3',
-  "Wolf" => 'Desktop/Flatiron Code/Fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/05.mp3',
-  "Blue" => 'Desktop/Flatiron Code/Fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/06.mp3',
-  "Graduation Failed" => 'Desktop/Flatiron Code/Fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/07.mp3'
+  "Go Go GO" => '~/Desktop/Code/042219/fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/01.mp3',
+  "LiberTeens" => '~/Desktop/Code/042219/fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/02.mp3',
+  "Hamburg" =>  '~/Desktop/Code/042219/fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/03.mp3',
+  "Guiding Light" => '~/Desktop/Code/042219/fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/04.mp3',
+  "Wolf" => '~/Desktop/Code/042219/fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/05.mp3',
+  "Blue" => '~/Desktop/Code/042219/fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/06.mp3',
+  "Graduation Failed" => '~/Desktop/Code/042219/fundamentals/jukebox-cli-seattle-web-career-042219/audio/Emerald-Park/07.mp3'
 }
 
 def help
@@ -32,10 +32,14 @@ end
 def play(my_songs)
   puts "Please enter a song name or number:"
   song_to_play = gets.chomp
+  puts song_to_play
   if !my_songs.keys.include?(song_to_play)
     puts "Invalid input, please try again" 
   else
     puts "Now playing => #{song_to_play}"
+    # binding.pry
+    puts my_songs[song_to_play]
+    afplay.send(my_songs[song_to_play])
     # system "open" + my_songs[song_to_play]
     # system 'open ' << my_songs[song_to_play]
   end
